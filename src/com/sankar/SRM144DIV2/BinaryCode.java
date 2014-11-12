@@ -13,6 +13,9 @@ public class BinaryCode {
     }
 
     String decoded(int p0, int[] inp) {
+        if (inp.length == 1 && inp[0] > 0)
+            return "NONE";
+
         int[] ans = new int[inp.length];
         String answer = "";
 
@@ -35,6 +38,9 @@ public class BinaryCode {
             answer += ans[i];
         }
 
+        if (inp.length > 2 && inp[inp.length - 1] != ans[inp.length - 1] + ans[inp.length - 2])
+            return "NONE";
+
         return answer;
     }
 
@@ -44,5 +50,16 @@ public class BinaryCode {
             input[i] = inp.charAt(i) - '0';
         }
         return input;
+    }
+
+    public static void main(String[] args) {
+        for (String s : new BinaryCode().decode("12221112222221112221111111112221111"))
+            System.out.println(s);
+
+        // M: 01101001101101001101001001001101001
+        // A: 01101001101101001101001001001101001
+
+        // M: 10110010110110010110010010010110010
+        // A: 10110010110110010110010010010110010
     }
 }
